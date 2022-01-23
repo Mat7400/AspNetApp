@@ -68,9 +68,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="arena.jpg" />
+    <Content Include="balll.png" />
     <Content Include="HtmlPage1.html" />
     <Content Include="ping.js" />
     <Content Include="player.jpg" />
+    <Content Include="player1.png" />
+    <Content Include="player2.png" />
     <Content Include="sprites.png" />
     <Content Include="style.css" />
     <Content Include="Web.config" />

@@ -3,12 +3,13 @@
     height: 100%;
 }
 #arena {
-    background-image: url('arena.jpg');
+     
+    background-image: url("https://i.ibb.co/ZhtPgkM/arena.jpg"); 
     background-size: 100% 100%;
     margin: 0px;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    
 }
 #score {
     position: absolute;
@@ -25,28 +26,38 @@
     font-family: 'PressStart2P';
     src: url('PressStart2P.woff');
 }
-.sprite {
-    background-image: url("sprites.png");
-    width: 128px;
-    height: 128px;
-}
-#player {
-    background-image: url("player.jpg");
+
+
+.player {
+    background-size: 100% 100%;
+    background-image: url("https://i.ibb.co/cXyyx5C/player1.png");
     position: absolute;
-    left: 200px;
-    top:200px;
+    background-color: #c7b39b;
+    left: 25%;
+    top: 50%;
+    width: 60px;
+    height: 60px;
 }
 
-#opponent {
+.opponent {
+    background-size: 100% 100%;
+    background-image: url("https://i.ibb.co/3m1qV5S/player2.png");
     position: absolute;
-    background-position: 0px 0px;
+    left: 85%;
+    top: 50%;
+    width: 60px;
+    height: 60px;
 }
 
-#ball {
+.ball {
+    background-size: 100% 100%;
+    background-image: url("https://i.ibb.co/JBc66LH/balll.png");
     position: absolute;
-    background-position: 128px 128px;
+    left: 50%;
+    top: 50%;
+    width: 15px;
+    height: 15px;
 }
-
 #right {
     background-position: 64px 192px;
 }
@@ -62,12 +73,7 @@
 #up {
     background-position: 128px 0px;
 }
-#ball {
-    position: absolute;
-    width: 64px;
-    height: 64px;
-    background-position: 128px 128px;
-}
+
 .control {
     margin: 16px;
     width: 64px;
