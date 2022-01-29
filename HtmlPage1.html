@@ -3,9 +3,102 @@
 <head>
     <meta charset="utf-8" />
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.1.1.min.js"></script>
-    <script src="ping.js"></script>
+    
     <link rel="stylesheet" href="style.css">
     <title>mat7400 ping-pong game</title>
+    <script language="javascript">
+        var Ball = function () {
+            // List of variables only the object can see (private variables).
+            var velocity = [-2, -2];
+            var position = [150, 150];
+            var ttime = 0;
+            var element = document.getElementById("ball");//получить html  по  ид
+            var paused = false;
+            // Method that moves the ball based on its velocity. This method is only used
+            // internally and will not be made accessible outside of the object.
+            function move(time) {
+                // If the ball hit the top or bottom, reverse the vertical speed.
+                if (position[1] <= 0 || position[1] >= innerHeight) {
+                    velocity[1] = -velocity[1];
+                }
+                // If the ball hit the left or right sides, reverse the horizontal speed.
+                if (position[0] <= 0 || position[0] >= innerWidth) {
+                    velocity[0] = -velocity[0];
+                }
+                position[0] += velocity[0] * time;
+                position[1] += velocity[1] * time;
+                element.css('left', (position[0] ) + 'px');
+                element.css('top', (position[1] ) + 'px');
+            }
+            // Update the state of the ball, which for now just checks  
+            // if the play is paused and moves the ball if it is not.  
+            // This function will be provided as a method on the object.
+            function update(time) {
+                // First the motion of the ball is handled
+                if (!paused) {
+                    move(ttime);
+                    ttime = ttime + 1;
+                }
+            }
+            // Pause the ball motion.
+            function pause() {
+                paused = true;
+            }
+            // Start the ball motion.
+            function start() {
+                paused = false;
+            }
+            // Now explicitly set what consumers of the Ball object can use.
+            // Right now this will just be the ability to update the state of the ball,
+            // and start and stop the motion of the ball.
+            return {
+                update: update,
+                pause: pause,
+                start: start,
+                time: ttime
+            }
+        }
+        var ball;
+        var lastUpdate;
+        document.addEventListener("DOMContentLoaded", function (event) {
+            //do work
+            lastUpdate = 0;
+            let start = Date.now(); // запомнить время начала
+            ball = Ball();
+            while (true) {
+                let timePassed = Date.now() - start;
+                requestAnimationFrame(update);
+                time = time + 1;
+            }
+        });
+        var sstart = Date.now();
+        var velocity = [-2, -2];
+        var position = [150, 150];
+        function movee() {
+            
+            var timePassed = (Date.now() - sstart)/1000;
+            //alert('ok timePassed' + timePassed);
+            
+            var ttime = 0;
+            var element = document.getElementById("ball");//получить html  по  ид
+            // If the ball hit the top or bottom, reverse the vertical speed.
+            if (position[1] <= 0 || position[1] >= innerHeight) {
+                velocity[1] = -velocity[1];
+            }
+            // If the ball hit the left or right sides, reverse the horizontal speed.
+            if (position[0] <= 0 || position[0] >= innerWidth) {
+                velocity[0] = -velocity[0];
+            }
+            positionx = 8 * timePassed;
+            positiony = 8 * timePassed;
+            //css not change
+            element.style["left"] = (positionx) + "px";
+            element.style["top"] = (positionx) + "px";
+            //element.css('left', (positionx) + 'px');
+           // element.css('top', (positiony) + 'px');
+
+        }
+    </script>
 </head>
 <body>
     <div id="arena">
@@ -18,7 +111,7 @@
         </div>
         <div id="player" class="player"></div>
         <div id="opponent" class="opponent"></div>
-        <div id="ball" class="ball"></div>
+        <div id="ball" class="ball" onclick="movee()"></div>
         <div id="controls-left">
             <div id="up" class="sprite control"></div>
             <div id="down" class="sprite control"></div>
